@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybats-3-mapper.dtd">
+  
+<mapper namespace="study.com.mybatis.dao.MemberDao">
+<!-- 로그인 시 회원가입 -->
+ 	  <insert id="write" parameterType="study.com.mybatis.dto.MemberDto">
+	     insert into member(member_name,member_userid,member_nickname,member_writetime,member_state,member_social)
+	     values(#{member_name},#{member_userid},#{member_nickname},now(),0,"naver")
+	  </insert>
+ 	  <insert id="Dwrite" parameterType="study.com.mybatis.dto.MemberDto">
+	     insert into member(member_userid,member_nickname,member_writetime,member_state,member_social)
+	     values(#{member_userid},#{member_nickname},now(),0,"kakao")
+	  </insert>  
+<!-- 로그인시 계정식별코드숫자를 판별 -->	  
+	  <select id="id_check" resultType="Integer">
+	    select count(*) from member
+	    where member_userid=#{param1}
+	  </select>
+<!-- 닉네임 수정 -->	  
+	  <update id ="update" parameterType="study.com.mybatis.dto.MemberDto">
+	 	  update member set member_nickname=#{member_nickname} where member_userid=#{member_userid}
+	  </update>
+	  
+<!-- 홈화면에만 디비값으로 가져오기 -->	  
+	 <select id="user_data" resultType="study.com.mybatis.dto.MemberDto">
+	    select * from member
+	    where member_userid=#{param1}
+	  </select>
+	  
+<!-- 로그오프할경우 state값 수정 -->	  
+	  <update id ="logoff" parameterType="study.com.mybatis.dto.MemberDto">
+	 	  update member set member_state=#{member_state} where member_userid=#{member_userid}
+	  </update>
+	  
+<!-- 로그인할경우 state값 1일경우 수정 -->	  
+	  <update id ="loginstate0" parameterType="study.com.mybatis.dto.MemberDto">
+	 	  update member set member_state=#{member_state} where member_userid=#{member_userid}
+	  </update>
+	  
+<!-- 즐겨찾기 수정 -->	  
+	  <update id ="like_change" parameterType="study.com.mybatis.dto.MemberDto">
+	 	  update member set member_like_subject=#{member_like_subject} where member_id=#{member_id}
+	  </update>
+</mapper>

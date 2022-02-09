@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybats-3-mapper.dtd">
+  
+<mapper namespace="study.com.mybatis.dao.NoticeDao"> 
+<!-- <select id="notice_list" resultType="kr.co.okword.dto.NoticeDto">
+	select * from notice order by notice_id desc limit #{param1},4
+</select> -->
+<select id="get_pagecnt" resultType="Integer">
+   select ceil(count(*)/4) from notice
+  </select>
+<select  id="notice_list" resultType="study.com.mybatis.dto.NoticeDto"> 
+	select * from notice where notice_title like concat('%',#{param1},'%') or notice_content like concat('%',#{param1},'%') order by notice_id desc limit #{param2},4 
+</select>
+<select id="notice_content"  resultType="study.com.mybatis.dto.NoticeDto">
+ 	select * from notice where notice_id=#{param1} 
+</select>
+</mapper>

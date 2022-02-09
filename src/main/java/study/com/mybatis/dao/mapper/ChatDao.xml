@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybats-3-mapper.dtd">
+  
+  
+<mapper namespace="study.com.mybatis.dao.ChatDao">
+<!-- 채팅시 디비저장 -->
+ 	  <insert id="Chat_write" parameterType="study.com.mybatis.dto.ChatDto">
+	     insert into chat(member_id,chat_content,chat_writetime,chat_delete_admin)
+	     values(#{member_id},#{chat_content},now(),0)
+	  </insert>
+
+
+
+
+</mapper>

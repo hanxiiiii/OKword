@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybats-3-mapper.dtd">
+  <mapper namespace="study.com.mybatis.dao.CommentDao">
+  <!-- 마이페이지 댓글   -->
+  <select id="cmlist" resultType="study.com.mybatis.dto.CommentDto">
+    select comment.comment_id,comment.comment_writetime,comment.comment_content,news.news_url,news.news_id
+	from comment left join news on comment.news_id = news.news_id
+	where news.news_id in (select comment.news_id from comment where member_id=#{param1})
+	order by comment.comment_writetime desc limit #{param2},10
+  </select>
+
+<!-- 마이페이지 댓글 갯수 -->
+  <select id="user_comment_count" resultType="Integer">
+    select count(*)
+	from comment left join news on comment.news_id = news.news_id
+	where news.news_id in (select comment.news_id from comment where member_id=#{member_id})
+	  </select>
+<!-- 총 페이지 구하기 -->
+	<select id="get_pagecnt2" resultType="Integer">
+		    select ceil(count(*)/10) from comment left join news on comment.news_id = news.news_id
+		    where news.news_id in (select comment.news_id from comment where member_id=#{member_id})
+	</select>
+	
+
+
+<!-- 마이페이지 댓글  삭제 -->  
+  <delete id="delete">
+    delete from comment where comment_id=#{param1}
+  </delete>
+
+  
+<!-- 댓글페이지 댓글들 -->  
+	 <insert id="comment_view_all_ok" parameterType="study.com.mybatis.dto.CommentDto">
+		insert into comment(comment_writetime,comment_content,news_id,member_id)
+		values(now(),#{comment_content},#{news_id},#{member_id})
+	 </insert>
+	<select id="clist" resultType="study.com.mybatis.dto.CommentDto">
+		select comment_id, comment_content, comment_writetime, member_nickname, comment.member_id
+		from comment join member on comment.member_id = member.member_id where comment.news_id = #{news_id} order by comment_writetime desc
+	</select>
+	<delete id="comment_delete"> 
+		delete from comment where comment_id=#{comment_id} 
+	</delete>    
+  </mapper>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybats-3-mapper.dtd">
+  <mapper namespace="study.com.mybatis.dao.NewsDao">
+  <!-- 마이페이지 좋아요 게시글 출력 -->
+  <select id="list" resultType="study.com.mybatis.dto.NewsDto">
+    select user_like.like_id,user_like.member_id,news.news_title,news.news_writetime,news.news_id
+	from user_like left join news on user_like.news_id = news.news_id
+	where member_id=#{param1} and news.news_id in (select user_like.news_id from user_like where member_id=#{param1})
+	order by news.news_writetime desc limit #{param2},10
+
+  </select>
+  
+   <!-- 마이페이지 좋아요 게시글 갯수 -->
+  <select id="user_like_count" resultType="Integer">
+    select count(*)
+	from user_like left join news on user_like.news_id = news.news_id
+	where member_id=#{param1} and news.news_id in (select user_like.news_id from user_like where member_id=#{param1})
+
+  </select>
+  
+  
+<!-- 마이페이지 좋아요 게시글 삭제 -->  
+  <delete id="delete">
+    delete from user_like where like_id=#{param1}
+  </delete>
+  
+  
+  <!--멤버 아이디와 뉴스아이디를 식별하여 좋아요 여부가 이미존재하나 체크 -->	  
+	  <select id="like_id_select" resultType="study.com.mybatis.dto.UserlikeDto">
+	    select * from user_like
+	    where member_id=#{param1} and news_id=#{param2}
+	  </select>
+  <!-- 멤버 아이디와 뉴스아이디를 식별하여 좋아요 여부가 이미존재하나 체크-->	  
+	  <select id="like_id_chk" resultType="Integer">
+	    select count(*) from user_like
+	    where member_id=#{param1} and news_id=#{param2}
+	  </select>
+<!-- 총 페이지 구하기 -->
+	<select id="get_pagecnt" resultType="Integer">
+		    select ceil(count(*)/10) from user_like left join news on user_like.news_id = news.news_id
+		    where member_id=#{param1} and news.news_id in (select user_like.news_id from user_like where member_id=#{param1})
+	</select>
+	
+	
+<!-- 뉴스 목록  -->
+<select id="list2" resultType="study.com.mybatis.dto.NewsDto">
+	select * from  news left join member on news.news_subject = member.member_like_subject
+	where news.news_subject=#{param1} and news.news_writetime=#{param2} limit 20
+</select>
+
+
+ <select id="news_content"  resultType="study.com.mybatis.dto.NewsDto">
+    select * from news where news_id=#{param1}
+  </select> 
+
+</mapper>

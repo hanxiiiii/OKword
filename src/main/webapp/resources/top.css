@@ -1,0 +1,125 @@
+@charset "UTF-8";
+ <style>
+
+body,html{
+background: linear-gradient( to bottom, #7543c0, #8A54A2 );
+height:auto;
+background-attachment:fixed;
+}
+.main_div{
+text-align:center;
+vertical-align: middle;
+}
+.main_ul{
+
+margin-bottom: -17px;
+}
+.main_li{
+display:inline-block;
+vertical-align: middle;
+}
+.main_table_ul{
+border:1px solid black;
+width:1000px;
+margin-left:400px;
+}
+.main_table_li{
+display:inline-block;
+border:1px solid black;
+width:150px;
+margin-right: -6px;
+}
+li{
+list-style:none; 
+}
+.social_login{
+width:100px;
+margin-bottom:20px;
+}
+#social_login_ul{
+display:none;
+}
+ #top {
+ width:1880px;
+ height:100px;
+ positon:absolute;
+ /* background:yellow; */
+ display:flex;
+ }
+ #index_menu {
+ width:1250px;
+ /* background:blue; */
+ margin-right:100px;
+ }
+ ul {
+ list-style-type:none;
+ }
+ li {
+ float:left;
+ /* outline:1px solid red; */
+ font-size:40px;
+ font-weight:bold;
+ padding-left:25px;
+ padding-right:25px;
+ padding-top:24px;
+ }
+ #menu_logo {
+ width:252px;
+ height:106px;
+ padding-left:65px;
+ padding-right:0px;
+ }
+ #menu_total {
+ }
+ #top_login {
+ /* background:pink; */
+ margin-left:40px;
+ margin-top:37px;
+ }
+ 
+#social_login_ul{
+left:2000px;
+display:none;
+}
+#mypage {
+width:115px;
+height:85px;
+margin-left:1240px;
+background-image: url('img/my.png');
+background-repeat: no-repeat;
+}
+  	#imgbt{
+     		background:url("resources/img/search_icon.png");
+     		background-repeat: no-repeat;      		
+     		width:35px;
+     		height:35px;
+     		float:left;
+     		background-size: 33px;
+     		border:0px;
+     		margin-left:10px;
+     	}      
+	 #notice td {		 	
+	 	height:118.5px;
+	 	padding:40px;
+	 	
+	 }
+	
+	 .content {
+	  width        : 500px;     /* 너비는 변경될수 있습니다. */
+	  height	   : 40px;
+	  text-overflow: ellipsis;  /* 위에 설정한 100px 보다 길면 말줄임표처럼 표시합니다. */
+	  overflow     : hidden;    /* 내용이 길면 감춤니다 */
+	  display      : block;     /* ie6이상 현재요소를 블럭처리합니다. */
+	 	
+	 }
+	 a {
+	 font-size:40px; color:white;
+	 text-decoration:none; 
+	 font-weight:bold;
+	 }   
+	 
+	 
+	 .main_li{
+	vertical-align: middle;
+	}
+ </style>

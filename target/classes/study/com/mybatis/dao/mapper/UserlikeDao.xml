@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybats-3-mapper.dtd">
+  <mapper namespace="study.com.mybatis.dao.UserlikeDao">
+  <!-- 좋아요 기능 -->	  
+	  <insert id="user_like_in" parameterType="study.com.mybatis.dto.UserlikeDto">
+	     insert into user_like(news_id,member_id)
+	     values(#{news_id},#{member_id})
+	  </insert>
+  
+  
+  <!-- 좋아요  취소 -->  
+  <delete id="user_like_out">
+    delete from user_like where like_id=#{param1}
+  </delete>
+  
+  
+  
+
+  </mapper>
