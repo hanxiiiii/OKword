@@ -10,7 +10,7 @@
   
 ## 개발환경
   - OS : Window8, Window10
-  - Development Tool : Apache Tomcat 9, STS 3.9.1, MYSQL 5.7, Pycham, eXRED, Adobe XD
+  - Development Tool : Apache Tomcat 9, STS 3.9.1, MYSQL 5.7, Pycharm, eXRED, Adobe XD
   - Language : JAVA Version 1.6, Python Version 3.6.5, Python Version 3.7.9
   - Test Browser : Chrome, Internet Explorer, Microsoft Edge
 
